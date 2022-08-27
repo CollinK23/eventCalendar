@@ -1,0 +1,179 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  z-index: 1;
+}
+
+#banner {
+  background-image: linear-gradient(45deg, #040609, #1d2436);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  width: 100%;
+  z-index: -999;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  padding-top: 15px;
+}
+
+p {
+  display: relative;
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.header h1 span {
+  background: -webkit-linear-gradient(180deg, #5d1ec2, #6f27db, #d079ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-left: 12px;
+}
+
+.select__month {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+}
+
+.select__month i {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.select__month i:hover {
+  background: -webkit-linear-gradient(180deg, #5d1ec2, #6f27db, #d079ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#month__selected {
+  display: flex;
+  color: white;
+  font-weight: 400;
+  text-align: center;
+  align-items: center;
+  margin: 0 1em;
+}
+
+.padding {
+  cursor: default;
+  background-color: #fffcff;
+  box-shadow: none;
+}
+
+.container {
+  width: 1120px;
+  margin: 0 auto;
+}
+
+.weekday__container {
+  display: flex;
+  justify-content: center;
+}
+
+.weekdays {
+  width: 100%;
+  display: grid;
+  place-content: center;
+  grid-template-columns: repeat(7, 1fr);
+  color: white;
+  font-weight: 400;
+  text-align: center;
+  max-width: 1120px;
+}
+
+.weekdays div {
+  width: 150px;
+  padding: 10px 50px;
+}
+
+#calendar {
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  width: 1120px;
+}
+
+.day {
+  color: white;
+  width: 150px;
+  padding: 10px;
+  height: 100px;
+  cursor: pointer;
+  box-sizing: border-box;
+  background: linear-gradient(45deg, #040609, #121621);
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 6px 6px 10px #00000066;
+  transition: 0.3s all;
+}
+
+.day:hover,
+.day.selected {
+  background: linear-gradient(45deg, #5d1ec2, #d079ff);
+}
+
+/* ----------------------------------- register.html --------------------------------------- */
+
+.main__title {
+  display: flex;
+  justify-content: center;
+}
+
+.main__title h1 {
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-top: 30px;
+  background: -webkit-linear-gradient(180deg, #5d1ec2, #6f27db, #d079ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register__form {
+  color: white;
+  max-width: 600px;
+}
+
+.register__btn {
+  font-weight: 600;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-self: center;
+  font-size: 0.9rem;
+  padding: 15px 20px;
+  height: 100%;
+  margin: 2rem auto;
+  width: 100px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 6px 6px 10px #00000066;
+  background: linear-gradient(45deg, #5d1ec2, #6f27db, #d079ff);
+  color: #ffffff;
+}
