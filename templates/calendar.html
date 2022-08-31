@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Calendar</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/static/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/ed8e0fbc25.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="/static/script.js">
+    </script>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <section class="banner" id="banner">
+      <nav class="navbar">
+        <div class="navbar__container">
+          <div id="navbar__logo"></div>
+          <ul class="navbar__menu">
+            <li class="navbar__item">
+              <a href="/" class="navbar__links">Home</a>
+            </li>
+            <li class="navbar__item">
+              <a href="/events" class="navbar__links">Events</a>
+            </li>
+            <li class="navbar__item">
+              <a href="/logout" class="navbar__links">Log out</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+        <div id="header" class="header">
+          <h1>
+            Hello {{name}}, View Your Events For <span id="current__month"></span>
+          </h1>
+          <!--<p id="current__time"></p>-->
+        </div>
+        <div class="select__month">
+          <button class="month__button" id="back__button"><i class="fa-solid fa-backward"></i></button>
+          <div id="month__selected"></div>
+          <button class="month__button" id="next__button"><i class="fa-solid fa-forward"></i></button>
+        </div>
+        <div class="container" id="container"></div>
+        <div class="weekday__container">
+          <div id="weekdays" class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+        </div>
+        <div id="calendar"></div>
+      </div>
+    </section>
+    {% else %}
+      <p>Login <a href="/login">Here</a></p>
+    {% endif %}
+  </body>
+</html>

@@ -6,7 +6,7 @@ from datetime import datetime
 # Create your views here.
 
 def home(request, year=datetime.now().year, month=datetime.now().strftime('%B')):
-    name = "Collin"
+    name = request.user.get_username()
 
     month = month.capitalize()
 
@@ -18,7 +18,7 @@ def home(request, year=datetime.now().year, month=datetime.now().strftime('%B'))
     now = datetime.now()
     current_year = now.year
     return render(request, 
-        'home.html', {
+        'calendar.html', {
         "name": name,
         "year": year,
         "month": month,

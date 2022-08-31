@@ -5,12 +5,13 @@
 {% load crispy_forms_tags %}
 <div class="login">
   <div class="main__title">
-    <h1>Create Account</h1>
+    <h1>Log In</h1>
   </div>
   <form method="POST" class="register__form">
     {% csrf_token %} {{form|crispy}}
-    <p>Already Have an Account? <a href="/login">Login</a></p>
-    <button type="submit" href="/events" class="register__btn">Sign Up</button>
+    <p><a href="/signup">Create an Account</a></p>
+    <button type="submit" class="register__btn">Log In</button>
   </form>
 </div>
-{% endblock %}
+{% endblock %} 
+

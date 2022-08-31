@@ -1,49 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event Calendar</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" type="text/css" href="/static/styles.css" />
-    <script
-      src="https://kit.fontawesome.com/ed8e0fbc25.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <section class="banner" id="banner">
-        <div id="header" class="header">
-          <h1>
-            Hello {{name}}, View Your Events For <span id="current__month"></span>
-          </h1>
-          <p id="current__time"></p>
+{% extends "base.html" %} 
+{% block title %} Home {% endblock %} 
+
+{% block content %} 
+<div class="landing__container">
+    <div class="landing__content">
+        {% if user.is_authenticated %}
+        <h2><span>Event</span> Calendar</h2>
+        <div class="landing__btns">
+            <a href="/events" class="home__btn" id="reg-btn-1">Events</a>
         </div>
-        <div class="select__month">
-          <button class="month__button" id="back__button"><i class="fa-solid fa-backward"></i></button>
-          <div id="month__selected"></div>
-          <button class="month__button" id="next__button"><i class="fa-solid fa-forward"></i></button>
-        </div>
-        <div class="container" id="container"></div>
-        <div class="weekday__container">
-          <div id="weekdays" class="weekdays">
-            <div>Sun</div>
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
-          </div>
-        </div>
-        <div id="calendar"></div>
-      </div>
-    </section>
-    <script src="/static/script.js">
-    </script>
-  </body>
-</html>
+            {% else %}
+            <h2><span>Event</span> Calendar</h2>
+            <div class="landing__btns">
+                <a href="/login" class="home__btn" id="reg-btn-1">Log In</a>
+                <a href="/signup" class="home__btn" id="reg-btn-2">Sign Up</a>
+            </div>
+            {% endif %}
+    </div>
+    <img src="/static/images/landingimage.svg" alt="landing-image" id="main-img"/>
+</div>
+
+{% endblock %}
