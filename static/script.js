@@ -4,7 +4,10 @@ let events = localStorage.getItem("events")
   ? JSON.parse(localStorage.getItem("events"))
   : [];
 
-const weekdays = [
+  const calendar = document.getElementById("calendar");
+  const eventScreen = document.getElementById('event__screen');
+  const backDrop = document.getElementById('new__event__overlay');
+  const weekdays = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -12,9 +15,34 @@ const weekdays = [
   "Thursday",
   "Saturday",
 ];
-const calendar = document.getElementById("calendar");
 
-/*function updateTime() {
+function openEventCreator(month, prevMonthDays, year, i) {
+  let day = i - prevMonthDays
+  let monthSelected = month + 1
+
+  let date = `${monthSelected}/${day}/${year}`
+
+  monthSelected = (monthSelected < 10 ? "0" : "") + monthSelected;
+  day = (day < 10 ? "0" : "") + day;
+
+  var dateSelected = year + '-' + monthSelected + '-' + day;
+  clicked = date
+
+  const eventForDay = events.find(e => e.date === clicked);
+
+  if (eventForDay) {
+    console.log('Event already exists');
+  } else {
+    eventScreen.style.display = 'block';
+    document.getElementById("date__select").value = dateSelected;
+  }
+
+  backDrop.style.display = 'flex';
+}
+
+//--------------------------------------DATE & TIME----------------------------------------------
+
+function updateTime() {
   let currentDate = new Date();
 
   let today =
@@ -34,7 +62,9 @@ const calendar = document.getElementById("calendar");
   document.getElementById("navbar__logo").innerText = `${dateAndTime}`;
 }
 
-setInterval(updateTime, 1000);*/
+setInterval(updateTime, 1000);
+
+//--------------------------------------CREATE CALENDAR----------------------------------------------
 
 function load() {
   const today = new Date();
@@ -76,9 +106,8 @@ function load() {
     if (i > prevMonthDays) {
       dayBox.innerText = i - prevMonthDays;
 
-      dayBox.addEventListener("click", (event) => {
-        event.currentTarget.classList.toggle("selected");
-      });
+      dayBox.addEventListener("click", () => 
+        openEventCreator(month, prevMonthDays, year, i, dt));
     } else {
       dayBox.classList.add("padding");
     }
@@ -86,6 +115,8 @@ function load() {
     calendar.appendChild(dayBox);
   }
 }
+
+//--------------------------------------CHANGE MONTH DISPLAYED----------------------------------------------
 
 function navMonths() {
   document.getElementById('next__button').addEventListener('click', () => {

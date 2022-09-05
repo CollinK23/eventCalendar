@@ -159,13 +159,15 @@ h1 {
 }
 
 .container {
-  width: 1120px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .weekday__container {
   display: flex;
   justify-content: center;
+  width: 75%;
+  margin: auto;
 }
 
 .weekdays {
@@ -176,12 +178,7 @@ h1 {
   color: white;
   font-weight: 700;
   text-align: center;
-  max-width: 1120px;
-}
-
-.weekdays div {
-  width: 150px;
-  padding: 10px 50px;
+  max-width: 100%;
 }
 
 #calendar {
@@ -189,15 +186,16 @@ h1 {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  width: 1120px;
+  gap: 0.5em;
+  width: 75%;
   padding-bottom: 50px;
 }
 
 .day {
   color: white;
-  width: 150px;
+  width: 100%;
   padding: 10px;
-  height: 100px;
+  height: 110px;
   cursor: pointer;
   box-sizing: border-box;
   background: linear-gradient(45deg, #040609, #121621);
@@ -215,6 +213,73 @@ h1 {
 
 .day.selected {
   background: linear-gradient(45deg, #5d1ec2, #d079ff);
+}
+
+
+#event__screen {
+  display: none;
+  z-index: 20;
+  padding: 25px;
+  background: linear-gradient(45deg, #5d1ec2, #d079ff);
+  box-shadow: 0px 0px 10px #00000066;
+  border-radius: 4px;
+  width: min(90%, 300px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.event__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__btns {
+  display: flex;
+  margin-top: 0.5em;
+}
+
+.event__btn {
+  font-weight: 600;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-self: center;
+  font-size: 1rem;
+  padding: 15px 20px;
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 6px 6px 10px #00000066;
+  background: linear-gradient(45deg, #040609, #121621);
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.event__btn:hover {
+  background: white;
+  color: black;
+}
+
+#new__event__overlay {
+  color: #ffffff;
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: transparent;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  background: rgba(0, 0, 0, 0);
+  opacity: 1;
+  border-radius: 4px;
+  transition: 0.3s ease;
 }
 
 /* ----------------------------------- register.html --------------------------------------- */

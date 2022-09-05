@@ -61,6 +61,30 @@
         </div>
         <div id="calendar"></div>
       </div>
+
+      <div id="event__screen">
+        <h3>New Event</h3>
+
+        <form class="event__form" method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <!--<label class="form__lbl">Date and Time</label>
+          <input id="date__select" type="date" name="">
+          <label class="form__lbl">Event Title</label>
+          <input id="date__select" type="textarea" name="" placeholder="Event Name">
+          <label class="form__lbl">Start</label>
+          <input id="time__start" type="time" name="">
+          <label class="form__lbl">End</label>
+          <input id="time__send" type="time" name="">-->
+          <div class="form__btns">
+            <button type="submit" id="save__btn" class="event__btn">Save</button>
+            <button id="cancel__btn" class="event__btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="new__event__overlay"></div>
+
     </section>
     {% else %}
       <p>Login <a href="/login">Here</a></p>
