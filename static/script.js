@@ -1,5 +1,6 @@
 let nav_month = 0;
 let clicked = null;
+fetch("")
 let events = localStorage.getItem("events")
   ? JSON.parse(localStorage.getItem("events"))
   : [];
@@ -105,6 +106,8 @@ function load() {
 
     if (i > prevMonthDays) {
       dayBox.innerText = i - prevMonthDays;
+
+      const eventForDay = events.find(e => e.date === clicked);
 
       dayBox.addEventListener("click", () => 
         openEventCreator(month, prevMonthDays, year, i, dt));
