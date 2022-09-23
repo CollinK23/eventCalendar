@@ -32,6 +32,9 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li class="navbar__item">
+                  <a href="/calendar" class="navbar__links">Calendar</a>
+                </li>
+                <li class="navbar__item">
                   <a href="/events" class="navbar__links">Events</a>
                 </li>
                 <li class="navbar__item">
@@ -39,8 +42,11 @@
                 </li>
                 {% else %}
                 <li class="navbar__item">
-                    <a href="/login" class="navbar__links">Events</a>
-                  </li>
+                  <a href="/calendar" class="navbar__links">Calendar</a>
+                </li>
+                <li class="navbar__item">
+                  <a href="/events" class="navbar__links">Events</a>
+                </li>
                 <li class="navbar__item">
                     <a href="/login" class="navbar__links">Log In</a>
                   </li>

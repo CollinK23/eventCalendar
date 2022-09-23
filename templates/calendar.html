@@ -28,6 +28,9 @@
               <a href="/" class="navbar__links">Home</a>
             </li>
             <li class="navbar__item">
+              <a href="/calendar" class="navbar__links">Calendar</a>
+            </li>
+            <li class="navbar__item">
               <a href="/events" class="navbar__links">Events</a>
             </li>
             <li class="navbar__item">
@@ -65,20 +68,21 @@
       <div id="event__screen">
         <h3>New Event</h3>
 
-        <form class="event__form" method="post">
+        <form class="event__form" method="POST">
           {% csrf_token %}
-          {{ form.as_p }}
-          <!--<label class="form__lbl">Date and Time</label>
-          <input id="date__select" type="date" name="">
+          <!--{{ form.as_p }}-->
+          <label class="form__lbl">Date and Time</label>
+          <input id="date__select" type="textarea" name="date__select">
+          <!-- change type to something else-->
           <label class="form__lbl">Event Title</label>
-          <input id="date__select" type="textarea" name="" placeholder="Event Name">
+          <input id="event__name" type="textarea" name="eventname" placeholder="Event Name">
           <label class="form__lbl">Start</label>
-          <input id="time__start" type="time" name="">
+          <input id="time__start" type="time" name="starttime">
           <label class="form__lbl">End</label>
-          <input id="time__send" type="time" name="">-->
+          <input id="time__send" type="time" name="endtime">
           <div class="form__btns">
             <button type="submit" id="save__btn" class="event__btn">Save</button>
-            <button id="cancel__btn" class="event__btn">Cancel</button>
+            <button id="cancel__btn" class="event__btn" href="/events">Cancel</button>
           </div>
         </form>
       </div>

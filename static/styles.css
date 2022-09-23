@@ -402,3 +402,7 @@ h1 {
 #reg-btn-2 {
   margin-left: 1em;
 }
+
+.hidden {
+  display: none;
+}
