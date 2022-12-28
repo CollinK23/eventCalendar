@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("signup/", regV.registerUser, name="registerUser"),
     path('calendar/', include('events.urls')),
+    path('events/', include('events.urls')),
     path('', TemplateView.as_view(template_name="home.html")),
     path('', include("django.contrib.auth.urls")),
 ]

@@ -4,46 +4,48 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event Calendar</title>
+    <title>Calendar</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;600&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/styles.css" />
     <script
       src="https://kit.fontawesome.com/ed8e0fbc25.js"
       crossorigin="anonymous"
     ></script>
-    <script defer src="/static/script.js">
-    </script>
+    <script defer src="/static/script.js"></script>
   </head>
   <body>
     {% if user.is_authenticated %}
     <section class="banner" id="banner">
       <nav class="navbar">
         <div class="navbar__container">
-          <div id="navbar__logo"></div>
-          <ul class="navbar__menu">
-            <li class="navbar__item">
-              <a href="/" class="navbar__links">Home</a>
-            </li>
-            <li class="navbar__item">
-              <a href="/calendar" class="navbar__links">Calendar</a>
-            </li>
-            <li class="navbar__item">
-              <a href="/events" class="navbar__links">Events</a>
-            </li>
-            <li class="navbar__item">
-              <a href="/logout" class="navbar__links">Log out</a>
-            </li>
-          </ul>
+          <a href="index.html" id="navbar__logo"
+            ><img class="navbar-image" src="/static/images/icon.png" alt="logo"
+          /></a>
+          <nav class="nav2">
+            <ul class="navbar__menu">
+              <li class="navbar__item">
+                <a href="/" class="navbar__links">Home</a>
+              </li>
+              <li class="navbar__item">
+                <a href="/calendar" class="navbar__links">Calendar</a>
+              </li>
+              <li class="navbar__item2">
+                <a href="/calendar/events" class="navbar__links" >Events</a>
+              </li>
+            </ul>
+          </nav>
+          <a href="/logout" class="logout__btn">Log Out</a>
         </div>
       </nav>
         <div id="header" class="header">
-          <h1>
-            Hello {{name}}, View Your Events For <span id="current__month"></span>
+          <h1 id="current__month">
           </h1>
-          <!--<p id="current__time"></p>-->
         </div>
         <div class="select__month">
           <button class="month__button" id="back__button"><i class="fa-solid fa-backward"></i></button>
@@ -68,12 +70,10 @@
       <div id="event__screen">
         <h3>New Event</h3>
 
-        <form class="event__form" method="POST">
+        <form class="event__form" id="event__form" method="POST">
           {% csrf_token %}
-          <!--{{ form.as_p }}-->
           <label class="form__lbl">Date and Time</label>
           <input id="date__select" type="textarea" name="date__select">
-          <!-- change type to something else-->
           <label class="form__lbl">Event Title</label>
           <input id="event__name" type="textarea" name="eventname" placeholder="Event Name">
           <label class="form__lbl">Start</label>
@@ -81,13 +81,21 @@
           <label class="form__lbl">End</label>
           <input id="time__send" type="time" name="endtime">
           <div class="form__btns">
-            <button type="submit" id="save__btn" class="event__btn">Save</button>
+            <button id="save__btn" class="event__btn" onclick="submitForm();">Save</button>
             <button id="cancel__btn" class="event__btn" href="/events">Cancel</button>
           </div>
         </form>
       </div>
 
       <div id="new__event__overlay"></div>
+
+      <ul>
+        {% for event in context.events %}
+          <li data-index="{{ forloop.counter0 }}"></li>
+          {% endfor %}
+      </ul>
+      
+      {{ context.events|json_script:"events-json" }}
 
     </section>
     {% else %}

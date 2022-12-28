@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     'events.apps.EventsConfig',
     'registerUser.apps.RegisteruserConfig',
+    'sqlite3',
 ]
 
 MIDDLEWARE = [

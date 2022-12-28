@@ -7,7 +7,8 @@
         {% if user.is_authenticated %}
         <h2><span>Event</span> Calendar</h2>
         <div class="landing__btns">
-            <a href="/events" class="home__btn" id="reg-btn-1">Events</a>
+            <a href="/calendar" class="home__btn" id="reg-btn-1">Calendar</a>
+            <a href="/calendar/events" class="home__btn" id="reg-btn-2">Events</a>
         </div>
             {% else %}
             <h2><span>Event</span> Calendar</h2>
@@ -17,7 +18,7 @@
             </div>
             {% endif %}
     </div>
-    <img src="/static/images/landingimage.svg" alt="landing-image" id="main-img"/>
+    <img src="/static/images/calendar.svg" alt="landing-image" id="main-img"/>
 </div>
 
 {% endblock %}

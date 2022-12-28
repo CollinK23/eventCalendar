@@ -1,49 +1,54 @@
 let nav_month = 0;
 let clicked = null;
-fetch("")
-let events = localStorage.getItem("events")
-  ? JSON.parse(localStorage.getItem("events"))
-  : [];
+let json_data = JSON.parse(document.getElementById('events-json').textContent);
 
-  const calendar = document.getElementById("calendar");
-  const eventScreen = document.getElementById('event__screen');
-  const backDrop = document.getElementById('new__event__overlay');
-  const weekdays = [
+var events = [];
+
+console.log(events);
+
+for(var i in json_data)
+    events.push([i, json_data [i]]);
+
+const calendar = document.getElementById("calendar");
+const eventScreen = document.getElementById("event__screen");
+const backDrop = document.getElementById("new__event__overlay");
+const weekdays = [
   "Sunday",
   "Monday",
   "Tuesday",
   "Wednesday",
   "Thursday",
+  "Friday",
   "Saturday",
 ];
 
 function openEventCreator(month, prevMonthDays, year, i) {
-  let day = i - prevMonthDays
-  let monthSelected = month + 1
+  let day = i - prevMonthDays;
+  let monthSelected = month + 1;
 
-  let date = `${monthSelected}/${day}/${year}`
+  let date = `${monthSelected}/${day}/${year}`;
 
   monthSelected = (monthSelected < 10 ? "0" : "") + monthSelected;
   day = (day < 10 ? "0" : "") + day;
 
-  var dateSelected = year + '-' + monthSelected + '-' + day;
-  clicked = date
+  var dateSelected = year + "-" + monthSelected + "-" + day;
+  clicked = date;
 
-  const eventForDay = events.find(e => e.date === clicked);
+  const eventForDay = false//events.find((e) => e.date === clicked);
 
   if (eventForDay) {
-    console.log('Event already exists');
+    console.log("Event already exists");
   } else {
-    eventScreen.style.display = 'block';
+    eventScreen.style.display = "block";
     document.getElementById("date__select").value = dateSelected;
   }
 
-  backDrop.style.display = 'flex';
+  backDrop.style.display = "flex";
 }
 
 //--------------------------------------DATE & TIME----------------------------------------------
 
-function updateTime() {
+/*function updateTime() {
   let currentDate = new Date();
 
   let today =
@@ -63,7 +68,7 @@ function updateTime() {
   document.getElementById("navbar__logo").innerText = `${dateAndTime}`;
 }
 
-setInterval(updateTime, 1000);
+setInterval(updateTime, 1000);*/
 
 //--------------------------------------CREATE CALENDAR----------------------------------------------
 
@@ -89,7 +94,7 @@ function load() {
   });
   const prevMonthDays = weekdays.indexOf(dateString.split(", ")[0]);
 
-  calendar.innerHTML = '';
+  calendar.innerHTML = "";
 
   document.getElementById(
     "month__selected"
@@ -97,8 +102,7 @@ function load() {
 
   document.getElementById(
     "current__month"
-  ).innerText = `${dt.toLocaleDateString("en-us", { month: "long" })} ${year}`;
-
+  ).innerText = `${weekdays[today.getDay()]}, ${dt.toLocaleDateString("en-us", { month: "long" })} ${today.getDate()}, ${year}`;
 
   for (let i = 1; i <= prevMonthDays + daysCount; i++) {
     const dayBox = document.createElement("div");
@@ -107,10 +111,38 @@ function load() {
     if (i > prevMonthDays) {
       dayBox.innerText = i - prevMonthDays;
 
-      const eventForDay = events.find(e => e.date === clicked);
+      let testing = `${year}-${month + 1}-${i - prevMonthDays}`;
+      let testing2 = `${year}-0${month + 1}-${i - prevMonthDays}`; //Single digit month
+      let testing3 = `${year}-${month + 1}-0${i - prevMonthDays}`; //Single digit day
 
-      dayBox.addEventListener("click", () => 
-        openEventCreator(month, prevMonthDays, year, i, dt));
+      for (let i = 0; i < events.length; i++){
+        let eventForDay = events[i].find(e => e.event_date == testing);
+        let eventForDay2 = events[i].find(e => e.event_date == testing2);
+        let eventForDay3 = events[i].find(e => e.event_date == testing3);
+
+        if (eventForDay){
+          const eventDiv = document.createElement('div');
+          eventDiv.classList.add('event');
+          eventDiv.innerText = eventForDay.title;
+          dayBox.appendChild(eventDiv);
+        }
+        else if (eventForDay2){
+          const eventDiv = document.createElement('div');
+          eventDiv.classList.add('event');
+          eventDiv.innerText = eventForDay2.title;
+          dayBox.appendChild(eventDiv);
+        }
+        else if (eventForDay3){
+          const eventDiv = document.createElement('div');
+          eventDiv.classList.add('event');
+          eventDiv.innerText = eventForDay3.title;
+          dayBox.appendChild(eventDiv);
+        }
+      }
+
+      dayBox.addEventListener("click", () =>
+        openEventCreator(month, prevMonthDays, year, i, dt)
+      );
     } else {
       dayBox.classList.add("padding");
     }
@@ -122,18 +154,26 @@ function load() {
 //--------------------------------------CHANGE MONTH DISPLAYED----------------------------------------------
 
 function navMonths() {
-  document.getElementById('next__button').addEventListener('click', () => {
+  document.getElementById("next__button").addEventListener("click", () => {
     nav_month++;
     console.log(nav_month);
     load();
   });
 
-  document.getElementById('back__button').addEventListener('click', () => {
+  document.getElementById("back__button").addEventListener("click", () => {
     nav_month--;
     console.log(nav_month);
     load();
   });
 }
 
-navMonths()
+navMonths();
 load();
+
+
+//--------------------------------------SUBMIT AND CLEAR FORM--------------------------------------------------
+
+function submitForm(){
+  document.getElementById("event__form").submit();
+  window.location = location;
+}

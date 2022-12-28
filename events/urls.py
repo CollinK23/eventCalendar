@@ -5,5 +5,5 @@ from . import views
 urlpatterns = [
     #path('', views.home, name="home")
     path('', views.home, name="home"),
-    path('json', views.json, name='json'),
+    path('events', views.showEvents, name='events'),
 ]
