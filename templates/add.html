@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+{% block title %} Add Event {% endblock %} 
+
+{% block content %} 
+<h1>Create New Event</h1>
+
+<div id="edit__screen">
+    <form class="edit__form" id="event__form" method="POST">
+      {% csrf_token %}
+      <label class="edit__lbl">Date and Time</label>
+      <input id="date__select" class="charField" type="text" name="date__select" placeholder="YYYY-MM-DD">
+      <label class="edit__lbl">Event Title</label>
+      <input id="event__name" class="charField" type="text" name="eventname" placeholder="Title">
+      <label class="edit__lbl">Start</label>
+      <input id="time__start" class="charField" type="time" name="starttime">
+      <label class="edit__lbl">End</label>
+      <input id="time__send" class="charField" type="time" name="endtime">
+      <div class="edit__btns">
+        <button type="submit"class="update__btn" href="/events">Create</button>
+        <a id="update__btn" class="update__btn" href="/calendar/events">Cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

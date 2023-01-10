@@ -24,7 +24,7 @@
     <section class="banner" id="banner">
       <nav class="navbar">
         <div class="navbar__container">
-          <a href="index.html" id="navbar__logo"
+          <a href="/" id="navbar__logo"
             ><img class="navbar-image" src="/static/images/icon.png" alt="logo"
           /></a>
           <nav class="nav2">
@@ -48,9 +48,9 @@
           </h1>
         </div>
         <div class="select__month">
-          <button class="month__button" id="back__button"><i class="fa-solid fa-backward"></i></button>
+          <a type="button" class="month__button" id="back__button"><i class="fa-solid fa-backward"></i></a>
           <div id="month__selected"></div>
-          <button class="month__button" id="next__button"><i class="fa-solid fa-forward"></i></button>
+          <a type="button" class="month__button" id="next__button"><i class="fa-solid fa-forward"></i></a>
         </div>
         <div class="container" id="container"></div>
         <div class="weekday__container">
@@ -73,16 +73,16 @@
         <form class="event__form" id="event__form" method="POST">
           {% csrf_token %}
           <label class="form__lbl">Date and Time</label>
-          <input id="date__select" type="textarea" name="date__select">
+          <input id="date__select" class="calField" type="textarea" name="date__select">
           <label class="form__lbl">Event Title</label>
-          <input id="event__name" type="textarea" name="eventname" placeholder="Event Name">
+          <input id="event__name" class="calField" type="textarea" name="eventname" placeholder="Event Name">
           <label class="form__lbl">Start</label>
-          <input id="time__start" type="time" name="starttime">
+          <input id="time__start" class="calField" type="time" name="starttime">
           <label class="form__lbl">End</label>
-          <input id="time__send" type="time" name="endtime">
+          <input id="time__send" class="calField" type="time" name="endtime">
           <div class="form__btns">
-            <button id="save__btn" class="event__btn" onclick="submitForm();">Save</button>
-            <button id="cancel__btn" class="event__btn" href="/events">Cancel</button>
+            <button id="save__btn" type="submit" class="event__btn" onclick="submitForm();">Save</button>
+            <a id="cancel__btn" class="event__btn" href="">Cancel</a>
           </div>
         </form>
       </div>

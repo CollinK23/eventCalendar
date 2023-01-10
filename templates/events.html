@@ -24,7 +24,7 @@
     <section class="banner" id="banner">
       <nav class="navbar">
         <div class="navbar__container">
-          <a href="index.html" id="navbar__logo"
+          <a href="/" id="navbar__logo"
             ><img class="navbar-image" src="/static/images/icon.png" alt="logo"
           /></a>
           <nav class="nav2">
@@ -57,21 +57,28 @@
             <th>Title</th>
             <th>Start</th>
             <th>End</th>
+            <th>Update</th>
+            <th>Delete</th>
           </tr>
         </thead>
         {% for instance in data %}
         <tr>
-          <td>{{ instance.fields.event_date}}</td>
-          <td>{{ instance.fields.title}}</td>
-          <td>{{ instance.fields.start}}</td>
-          <td>{{ instance.fields.end}}</td>
-          <td><form method="POST">
-            {% csrf_token %}
-            <input type = "submit" value="Delete"/>
-          </form></td>
+          <td>{{ instance.event_date}}</td>
+          <td>{{ instance.title}}</td>
+          <td>{{ instance.start}}</td>
+          <td>{{ instance.end}}</td>
+          <td>
+            <a href="{% url 'editEvent' instance.id %}" class="edit__btn"><i class="fa-solid fa-pen-to-square"></i></a>
+          </td>
+          <td>
+            <a href="{% url 'deleteEvent' instance.id %}" class="edit__btn"><i class="fa-solid fa-trash"></i></a>
+          </td>
         </tr>
         {% endfor %}
       </table>
+      <div class="add__event__overlay">
+        <a href="{% url 'addEvent' %}" title="Create New" class="edit__btn" id="add__btn"><i class="fa-solid fa-plus"></i></a></td>
+      </div>
     </section>
     {% else %}
     <p>Login <a href="/login">Here</a></p>

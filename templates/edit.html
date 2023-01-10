@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+{% block title %} Update Event {% endblock %} 
+
+{% block content %} 
+<h1>Update Event</h1>
+
+<div id="edit__screen">
+    <form class="edit__form" id="event__form" method="POST">
+      {% csrf_token %}
+      <label class="edit__lbl">Date and Time</label>
+      <input id="date__select" class="charField" type="text" name="date__select" value="{{event.event_date|date:'Y-m-d'}}">
+      <label class="edit__lbl">Event Title</label>
+      <input id="event__name" class="charField" type="text" name="eventname" value="{{event.title}}">
+      <label class="edit__lbl">Start</label>
+      <input id="time__start" class="charField" type="time" name="starttime" value="{{event.start|time:'h:i:s'}}">
+      <label class="edit__lbl">End</label>
+      <input id="time__send" class="charField" type="time" name="endtime" value="{{event.end|time:'h:i:s'}}">
+      <div class="edit__btns">
+        <button type="submit" id="update__btn" class="update__btn" href="/events">Update</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

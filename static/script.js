@@ -26,50 +26,16 @@ function openEventCreator(month, prevMonthDays, year, i) {
   let day = i - prevMonthDays;
   let monthSelected = month + 1;
 
-  let date = `${monthSelected}/${day}/${year}`;
-
   monthSelected = (monthSelected < 10 ? "0" : "") + monthSelected;
   day = (day < 10 ? "0" : "") + day;
 
   var dateSelected = year + "-" + monthSelected + "-" + day;
-  clicked = date;
 
-  const eventForDay = false//events.find((e) => e.date === clicked);
-
-  if (eventForDay) {
-    console.log("Event already exists");
-  } else {
-    eventScreen.style.display = "block";
-    document.getElementById("date__select").value = dateSelected;
-  }
+  eventScreen.style.display = "block";
+  document.getElementById("date__select").value = dateSelected;
 
   backDrop.style.display = "flex";
 }
-
-//--------------------------------------DATE & TIME----------------------------------------------
-
-/*function updateTime() {
-  let currentDate = new Date();
-
-  let today =
-    currentDate.getMonth() + 1 + "/" + currentDate.getDate() + "/" + currentDate.getFullYear(); // prettier-ignore
-
-  if (currentDate.getMinutes() <= 9) {
-    var time =
-      currentDate.getHours() + ":0" + currentDate.getMinutes() + ":" + currentDate.getSeconds(); // prettier-ignore
-  } else if (currentDate.getSeconds() <= 9) {
-    var time =
-      currentDate.getHours() + ":" + currentDate.getMinutes() + ":0" + currentDate.getSeconds(); // prettier-ignore
-  } else {
-    var time =
-      currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds(); // prettier-ignore
-  }
-  let dateAndTime = today + " " + time;
-  document.getElementById("navbar__logo").innerText = `${dateAndTime}`;
-}
-
-setInterval(updateTime, 1000);*/
-
 //--------------------------------------CREATE CALENDAR----------------------------------------------
 
 function load() {
@@ -114,11 +80,13 @@ function load() {
       let testing = `${year}-${month + 1}-${i - prevMonthDays}`;
       let testing2 = `${year}-0${month + 1}-${i - prevMonthDays}`; //Single digit month
       let testing3 = `${year}-${month + 1}-0${i - prevMonthDays}`; //Single digit day
+      let testing4 = `${year}-0${month + 1}-0${i - prevMonthDays}`; //Single digit month and day
 
       for (let i = 0; i < events.length; i++){
         let eventForDay = events[i].find(e => e.event_date == testing);
         let eventForDay2 = events[i].find(e => e.event_date == testing2);
         let eventForDay3 = events[i].find(e => e.event_date == testing3);
+        let eventForDay4 = events[i].find(e => e.event_date == testing4);
 
         if (eventForDay){
           const eventDiv = document.createElement('div');
@@ -136,6 +104,12 @@ function load() {
           const eventDiv = document.createElement('div');
           eventDiv.classList.add('event');
           eventDiv.innerText = eventForDay3.title;
+          dayBox.appendChild(eventDiv);
+        }
+        else if (eventForDay4){
+          const eventDiv = document.createElement('div');
+          eventDiv.classList.add('event');
+          eventDiv.innerText = eventForDay4.title;
           dayBox.appendChild(eventDiv);
         }
       }
